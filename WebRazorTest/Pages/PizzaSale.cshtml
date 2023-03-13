@@ -1,12 +1,40 @@
 ﻿@page
 @model WebRazorTest.Pages.PizzaSaleModel
 @{
-    ViewData["Title"] = "Pizza Sale";
+    ViewData["Title"] = "Pizza Sale !!!!";
 }
 <h1>Pizza Sale</h1>
-<div>
-    <a asp-page="/Checkout/Checkout"></a>
+<div class="bg-danger">
+    <div class="row">
+        <div class="col-6 text-center">
+            <img src="~/img/Pizzas/Create.png" class="w-50" />
+
+        </div>
+
+        <div class="col-6 text-end">
+            <a asp-page="/Forms/CustomPizza" class="btn btn-primary m-4">CUSTOM</a>
+        </div>
+    </div>
+
 </div>
+
+
 <div>
-    <a asp-page="/Forms/CustomPizza"></a>
+    <a asp-page="/Checkout/Checkout">CHECKOUT</a>
 </div>
+
+@foreach (var p in Model.FakePizzaDB)
+{
+    <div class="card" style="width: 18rem;">
+        @{
+            var path = "/img/Pizzas/" + p.ImageTitle + ".png";
+        }
+        <a asp-page="/Checkout/Checkout" class="btn">
+            <img src="@path" class="card-img-top" alt="@p.ImageTitle">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">@p.Name</h5>
+            <a asp-page="/Checkout/Checkout" class="btn btn-primary">Order!</a>
+        </div>
+    </div>
+}
