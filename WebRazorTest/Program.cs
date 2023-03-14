@@ -1,7 +1,12 @@
+global using Microsoft.EntityFrameworkCore;
+using WebRazorTest.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<PizzaDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("MSSQL")));
 
 var app = builder.Build();
 
